@@ -1,0 +1,1 @@
+angular.module('contactsapp', ['contactsController', 'contactService']);

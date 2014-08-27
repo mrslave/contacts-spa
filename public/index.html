@@ -1,0 +1,84 @@
+<!doctype html>
+<html ng-app="contactsapp">
+<head>	
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Contacts | Single Page Application</title>	
+	
+	<style type="text/css">
+		table {
+			width: 300px;			
+			border: 1px solid #a52a2a;
+			border-collapse: collapse;
+		}
+		td, th {
+			padding: 3px;
+		}
+		td {
+			text-align: center;
+			border-bottom: 1px solid #a52a2a;
+		}
+	</style>
+	
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+
+	<script src="js/controllers/main.js"></script>
+	<script src="js/services/contacts.js"></script>
+	<script src="js/core.js"></script>
+
+</head>
+
+<body ng-controller="mainController">
+	<div class="container">		
+		<div>
+			<h1>Contacts list. There is {{contacts.length}} contacts</h1>			
+		</div>
+		
+		<div id="contact-list">
+			<div>
+				<table border = "1px solid black" border-collapse = "collapse">
+					<tr>	
+						<th>Name</th>
+						<th>Email</th>
+						<th>Phone</th>
+						<th>Address</th>
+						<th>Birthday</th>
+						<th>Other</th>
+						<th></th>
+						<th></th>
+					</tr>				
+					<tbody ng-repeat="contact in contacts">						
+							<td>{{contact.name}}</td>
+							<td>{{contact.email}}</td>
+							<td>{{contact.phone}}</td> 
+							<td>{{contact.address}}</td>
+							<td>{{contact.birth}}</td>
+							<td>{{contact.desc}}</td> 
+							<td><a ng-click="deleteContact(contact.id)" href="">del</a></td>
+							<td><a ng-click="showContact(contact.id)" href="">edit</a></td>							
+						
+					</tbody>
+				</table>				
+			</div>
+		</div>
+		<br>
+		<br>
+		
+		<div id="contact-form" class="row">
+			<div class="col-sm-8 col-sm-offset-2 text-center">
+				<form>					
+					Name:<input type="text"  ng-model="formData.name"><br>
+					Email:<input type="text"  ng-model="formData.email"><br>
+					Phone:<input type="text"  ng-model="formData.phone"><br>
+					Address:<input type="text"  ng-model="formData.address"><br>
+					Birthday:<input type="text"  ng-model="formData.birth"><br>
+					Other:<textarea type="text"  ng-model="formData.desc"></textarea><br>					
+					<button id="addbutton" type="submit" style = "display:block" ng-click="createContact()">Add</button>
+					<button id="savebutton" type="submit" style = "display:none" ng-click="editContact(formData.id)">Edit</button>
+				</form>
+			</div>
+		</div>		
+	</div>
+</body>
+</html>
